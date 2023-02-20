@@ -42,6 +42,7 @@ class AuthController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
+        \Log::debug('Received login request: ', $request->all());
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'Unauthorized'], 401);
         }
